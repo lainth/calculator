@@ -1,3 +1,3 @@
 #JS Calculator
 
-## A basic calculator with a graphical UI
+## A calculator with a graphical UI
