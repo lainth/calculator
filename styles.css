@@ -1,0 +1,93 @@
+.display {
+  grid-area: display;
+}
+
+.clear {
+  grid-area: clear;
+}
+
+.negate {
+  grid-area: negate;
+}
+
+.divide {
+  grid-area: divide;
+}
+
+.multiply {
+  grid-area: multiply;
+}
+
+.substract {
+  grid-area: substract;
+}
+
+.add {
+  grid-area: add;
+}
+
+.seven {
+  grid-area: seven;
+}
+
+.eight {
+  grid-area: eight;
+}
+
+.nine {
+  grid-area: nine;
+}
+
+.four {
+  grid-area: four;
+}
+
+.five {
+  grid-area: five;
+}
+
+.six {
+  grid-area: six;
+}
+
+.one {
+  grid-area: one;
+}
+
+.two {
+  grid-area: two;
+}
+
+.three {
+  grid-area: three;
+}
+
+.zero {
+  grid-area: zero;
+}
+
+.decimal {
+  grid-area: decimal;
+}
+
+.equals {
+  grid-area: equals;
+}
+
+.container {
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 60px 60px 60px 60px;
+  grid-template-rows: 60px 60px 60px 60px 60px 60px;
+  column-gap: 1px;
+  row-gap: 1px;
+  grid-template-areas:
+    "display display display display"
+    "clear clear negate divide"
+    "seven eight nine multiply"
+    "four five six substract"
+    "one two three add"
+    "zero zero decimal equals";
+  justify-content: center;
+  align-content: center;
+}
