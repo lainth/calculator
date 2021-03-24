@@ -7,7 +7,14 @@ button {
 
 .display {
   grid-area: display;
+  text-align: end;
+  padding-top: 7px;
+  padding-right: 5px;
   border: 2px solid black;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  font-weight: bold;
+  font-size: 30px;
 }
 
 .blue {
@@ -98,7 +105,7 @@ button {
   height: 100vh;
   display: grid;
   grid-template-columns: 60px 60px 60px 60px;
-  grid-template-rows: 60px 60px 60px 60px 60px 60px;
+  grid-template-rows: 50px 60px 60px 60px 60px 60px;
   column-gap: 2px;
   row-gap: 2px;
   grid-template-areas:
