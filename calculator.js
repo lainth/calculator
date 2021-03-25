@@ -1,5 +1,4 @@
 // MATH FUNC
-
 const add = (nb1, nb2) => {
   return nb1 + nb2;
 };
@@ -180,6 +179,13 @@ window.onkeydown = (e) => {
     case ".":
       tmp += e.key;
       isFloat = true;
+      break;
+    case "Escape":
+      document.getElementById("displayNb").textContent = 0;
+      nb1 = 0;
+      nb2 = 0;
+      isClicked = false;
+      tmp = "";
       break;
   }
 };
