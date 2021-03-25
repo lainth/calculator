@@ -103,7 +103,8 @@ buttonEqual.addEventListener("click", () => {
 });
 
 buttonDel.addEventListener("click", () => {
-  tmp = Math.floor(tmp / 10);
+  let tmpStr = tmp.toString();
+  tmp = tmpStr.slice(0, -1);
   document.getElementById("displayNb").innerHTML = tmp;
 });
 
