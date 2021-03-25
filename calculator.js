@@ -13,10 +13,12 @@ const multiply = (nb1, nb2) => {
 };
 
 const divide = (nb1, nb2) => {
-  if (nb1 / 0) {
+  if (nb1 == 0 || nb2 == 0) {
     return "ERROR";
   }
-  return nb1 / nb2;
+  let res = parseFloat(nb1) / parseFloat(nb2);
+  let rounded = parseFloat(res.toFixed(2));
+  return rounded;
 };
 
 const operate = (operator, nb1, nb2) => {
@@ -31,17 +33,22 @@ const operate = (operator, nb1, nb2) => {
   }
 };
 
-// EVENT HANDLING
+// CALCULATOR
 let nb1 = "";
 let nb2 = "";
 let tmp = "";
 let operator = "";
 let res = 0;
 
-let buttonNb = document.getElementsByClassName("nb");
+let isClicked = false;
+let isFloat = false;
+
+const buttonNb = document.getElementsByClassName("nb");
 const buttonClear = document.getElementById("clear");
 const buttonOperator = document.getElementsByClassName("operator");
 const buttonEqual = document.getElementById("equal");
+const buttonDecimal = document.getElementById("dec");
+const buttonNegate = document.getElementById("neg");
 
 document.getElementById("displayNb").textContent = 0;
 
@@ -55,21 +62,49 @@ for (let i = 0; i < buttonNb.length; i++) {
 for (let i = 0; i < buttonOperator.length; i++) {
   buttonOperator[i].addEventListener("click", (e) => {
     operator = e.target.value;
-    nb1 = parseInt(tmp);
+    if (isFloat == true) {
+      nb1 = parseFloat(tmp);
+    } else {
+      nb1 = parseInt(tmp);
+    }
     tmp = "";
+    isClicked = false;
   });
 }
 
+buttonDecimal.addEventListener("click", (e) => {
+  tmp += e.target.value;
+  isFloat = true;
+});
+
+buttonNegate.addEventListener("click", () => {
+  isClicked = !isClicked;
+  if (isClicked == true) {
+    tmp = -Math.abs(tmp);
+    document.getElementById("displayNb").innerHTML = tmp;
+  }
+});
+
 buttonEqual.addEventListener("click", () => {
-  nb2 = parseInt(tmp);
+  if (isFloat == true) {
+    nb2 = parseFloat(tmp);
+  } else {
+    nb2 = parseInt(tmp);
+  }
   res = operate(operator, nb1, nb2);
-  document.getElementById("displayNb").innerHTML = res;
+  if (!res.isInteger) {
+    document.getElementById("displayNb").innerHTML = parseFloat(res.toFixed(2));
+  } else {
+    document.getElementById("displayNb").innerHTML = res;
+  }
   tmp = res;
+  isClicked = false;
 });
 
 buttonClear.addEventListener("click", () => {
   document.getElementById("displayNb").textContent = 0;
   nb1 = 0;
   nb2 = 0;
+  isClicked = false;
   tmp = "";
 });
