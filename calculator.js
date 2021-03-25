@@ -45,6 +45,7 @@ let isFloat = false;
 
 const buttonNb = document.getElementsByClassName("nb");
 const buttonClear = document.getElementById("clear");
+const buttonDel = document.getElementById("del");
 const buttonOperator = document.getElementsByClassName("operator");
 const buttonEqual = document.getElementById("equal");
 const buttonDecimal = document.getElementById("dec");
@@ -101,6 +102,11 @@ buttonEqual.addEventListener("click", () => {
   isClicked = false;
 });
 
+buttonDel.addEventListener("click", () => {
+  tmp = Math.floor(tmp / 10);
+  document.getElementById("displayNb").innerHTML = tmp;
+});
+
 buttonClear.addEventListener("click", () => {
   document.getElementById("displayNb").textContent = 0;
   nb1 = 0;
@@ -108,3 +114,5 @@ buttonClear.addEventListener("click", () => {
   isClicked = false;
   tmp = "";
 });
+
+//KEYBOARD HANDLING
