@@ -80,8 +80,13 @@ buttonDecimal.addEventListener("click", (e) => {
 
 buttonNegate.addEventListener("click", () => {
   isClicked = !isClicked;
-  if (isClicked == true) {
+  if (tmp > 0) {
+    isClicked = true;
     tmp = -Math.abs(tmp);
+    document.getElementById("displayNb").innerHTML = tmp;
+  } else if (tmp < 0) {
+    isClicked = false;
+    tmp = Math.abs(tmp);
     document.getElementById("displayNb").innerHTML = tmp;
   }
 });
@@ -99,6 +104,8 @@ buttonEqual.addEventListener("click", () => {
     document.getElementById("displayNb").innerHTML = res;
   }
   tmp = res;
+  nb1 = "";
+  nb2 = "";
   isClicked = false;
 });
 
@@ -117,3 +124,62 @@ buttonClear.addEventListener("click", () => {
 });
 
 //KEYBOARD HANDLING
+window.onkeydown = (e) => {
+  e.preventDefault();
+  switch (e.key) {
+    case "Backspace":
+      let tmpStr = tmp.toString();
+      tmp = tmpStr.slice(0, -1);
+      document.getElementById("displayNb").innerHTML = tmp;
+      break;
+    case "Enter":
+      if (isFloat == true) {
+        nb2 = parseFloat(tmp);
+      } else {
+        nb2 = parseInt(tmp);
+      }
+      res = operate(operator, nb1, nb2);
+      if (!res.isInteger) {
+        document.getElementById("displayNb").innerHTML = parseFloat(
+          res.toFixed(2)
+        );
+      } else {
+        document.getElementById("displayNb").innerHTML = res;
+      }
+      tmp = res;
+      nb1 = "";
+      nb2 = "";
+      isClicked = false;
+      break;
+    case "+":
+    case "/":
+    case "-":
+    case "*":
+      operator = e.key;
+      if (isFloat == true) {
+        nb1 = parseFloat(tmp);
+      } else {
+        nb1 = parseInt(tmp);
+      }
+      tmp = "";
+      isClicked = false;
+      break;
+    case "0":
+    case "1":
+    case "2":
+    case "3":
+    case "4":
+    case "5":
+    case "6":
+    case "7":
+    case "8":
+    case "9":
+      tmp += e.key;
+      document.getElementById("displayNb").innerHTML = tmp;
+      break;
+    case ".":
+      tmp += e.key;
+      isFloat = true;
+      break;
+  }
+};
