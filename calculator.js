@@ -62,7 +62,9 @@ for (let i = 0; i < buttonNb.length; i++) {
 for (let i = 0; i < buttonOperator.length; i++) {
   buttonOperator[i].addEventListener("click", (e) => {
     operator = e.target.value;
-    if (isFloat == true) {
+    if (operator == "-" && tmp == "") {
+      tmp = operator;
+    } else if (isFloat == true) {
       nb1 = parseFloat(tmp);
     } else {
       nb1 = parseInt(tmp);
@@ -96,6 +98,7 @@ buttonEqual.addEventListener("click", () => {
   } else {
     nb2 = parseInt(tmp);
   }
+
   res = operate(operator, nb1, nb2);
   if (!res.isInteger) {
     document.getElementById("displayNb").innerHTML = parseFloat(res.toFixed(2));
@@ -155,7 +158,9 @@ window.onkeydown = (e) => {
     case "-":
     case "*":
       operator = e.key;
-      if (isFloat == true) {
+      if (operator == "-" && tmp == "") {
+        tmp = operator;
+      } else if (isFloat == true) {
         nb1 = parseFloat(tmp);
       } else {
         nb1 = parseInt(tmp);
